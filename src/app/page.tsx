@@ -2,10 +2,11 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { 
   Terminal, Shield, ChevronDown, Sparkles, Github, Linkedin, Mail, 
   Briefcase, GraduationCap, Award, Server, Activity, Bug, Code2, 
-  Cpu, Lock, Database, Network
+  Cpu, Lock, Database, Network, ExternalLink, Download, FileText, Wrench
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -45,27 +46,45 @@ function useTypingEffect(text: string, speed: number = 80, delay: number = 0) {
 
 // --- Floating Particles Background ---
 function ParticlesBackground() {
+  const [mounted, setMounted] = useState(false);
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([]);
+
+  useEffect(() => {
+    setMounted(true);
+    setParticles(
+      Array.from({ length: 30 }).map((_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 5,
+        duration: 10 + Math.random() * 20,
+      }))
+    );
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 30 }).map((_, i) => (
+      {particles.map((p) => (
         <motion.div
-          key={i}
+          key={p.id}
           className="absolute w-[2px] h-[2px] rounded-full bg-emerald-500/30"
           initial={{
-            x: `${Math.random() * 100}%`,
-            y: `${Math.random() * 100}%`,
+            x: `${p.x}%`,
+            y: `${p.y}%`,
             opacity: 0,
           }}
           animate={{
-            y: [`${Math.random() * 100}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`],
-            x: [`${Math.random() * 100}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`],
-            opacity: [0, 0.6, 0],
+            y: [`${p.y}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`, `${p.y}%`],
+            x: [`${p.x}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`, `${p.x}%`],
+            opacity: [0, 0.6, 0.6, 0],
           }}
           transition={{
-            duration: 10 + Math.random() * 20,
+            duration: p.duration,
             repeat: Infinity,
             ease: "linear",
-            delay: Math.random() * 5,
+            delay: p.delay,
           }}
         />
       ))}
@@ -248,9 +267,15 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
             <Card className="w-full max-w-sm bg-zinc-950/80 border-emerald-900/50 shadow-[0_0_20px_rgba(16,185,129,0.1)] backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-600 via-emerald-400 to-emerald-600 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
               <CardContent className="p-8 pt-10 flex flex-col items-center text-center relative z-10">
-                <div className="w-20 h-20 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 shadow-inner relative group-hover:border-emerald-500/30 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all duration-500">
-                  <div className="absolute inset-0 bg-emerald-500/10 rounded-2xl blur-xl group-hover:bg-emerald-500/20 transition-colors" />
-                  <Lock className="w-8 h-8 text-emerald-400 relative z-10" />
+                <div className="w-24 h-24 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 shadow-inner relative group-hover:border-emerald-500/50 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all duration-500 overflow-hidden z-10">
+                  <div className="absolute inset-0 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/30 transition-colors z-0" />
+                  <Image 
+                    src="/profile.png" 
+                    width={120} 
+                    height={120} 
+                    alt="Rakan Aji Pratama"
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 z-10"
+                  />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-2 tracking-tight group-hover:text-emerald-50 transition-colors">Rakan Aji Pratama</h3>
                 <p className="text-sm text-zinc-400 font-mono mb-6 leading-relaxed">
@@ -287,6 +312,57 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   );
 }
 
+// --- Telemetry / System Metrics ---
+function TelemetryMetrics() {
+  const metrics = [
+    { label: "Servers Hardened", value: "300+", suffix: "" },
+    { label: "Cumulative GPA", value: "3.54", suffix: "" },
+    { label: "Modules Mentored", value: "6", suffix: "" },
+    { label: "Funding Awarded", value: "PKM KC", suffix: "" },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  };
+
+  return (
+    <section className="relative px-6 md:px-12 lg:px-24 mb-12 py-8 relative z-20">
+      <div className="max-w-6xl mx-auto">
+        <motion.div 
+          variants={containerVariants} 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          {metrics.map((metric, i) => (
+            <motion.div key={i} variants={itemVariants}>
+              <Card className="bg-zinc-950/80 border-zinc-800/80 hover:border-emerald-500/40 backdrop-blur-md transition-all duration-300 hover:shadow-[0_8px_20px_rgba(16,185,129,0.08)] group overflow-hidden relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <CardContent className="p-4 md:p-6 flex flex-col items-center justify-center text-center relative z-10 h-full">
+                  <div className="text-3xl lg:text-4xl font-mono font-bold text-emerald-400 glow-emerald mb-2">
+                    {metric.value}
+                    <span className="text-xl lg:text-2xl">{metric.suffix}</span>
+                  </div>
+                  <div className="text-xs lg:text-sm text-zinc-500 font-mono tracking-tight uppercase group-hover:text-zinc-400 transition-colors">
+                    {metric.label}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 // --- Experience & Education Bento Grid ---
 function ExperienceEducationBento() {
   const ref = useRef(null);
@@ -299,7 +375,7 @@ function ExperienceEducationBento() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
   };
 
   return (
@@ -383,6 +459,28 @@ function ExperienceEducationBento() {
               </Card>
             </motion.div>
 
+            {/* Span 1: Dossier Download (Moved under Practicum Assistant) */}
+            <motion.div variants={itemVariants} className="md:col-span-1">
+              <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(16,185,129,0.15)] group relative overflow-hidden flex flex-col justify-center items-center text-center">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-8 relative z-10 w-full flex flex-col items-center justify-center">
+                  <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-emerald-500/10 rounded-full mb-6 border border-emerald-500/20 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-500 shadow-inner">
+                    <FileText className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400 glow-emerald" />
+                  </div>
+                  <h3 className="font-mono text-sm text-emerald-400 mb-6 glow-emerald group-hover:tracking-wide transition-all">
+                    &gt; ./download_dossier.sh
+                  </h3>
+                  <Button variant="outline" className="w-full max-w-[200px] border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 font-mono text-xs h-10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all">
+                    <Download className="w-4 h-4 mr-2" />
+                    [ Extract Resume ]
+                  </Button>
+                  <p className="text-[10px] text-zinc-500 mt-4 font-mono leading-relaxed max-w-[180px]">
+                    Classified technical record.<br/> Authorized personnel only.
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+
             {/* Span 1: Education */}
             <motion.div variants={itemVariants} className="md:col-span-1">
               <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group relative overflow-hidden">
@@ -421,8 +519,40 @@ function ExperienceEducationBento() {
               </Card>
             </motion.div>
 
-            {/* Span 2: Certifications Vault */}
-            <motion.div variants={itemVariants} className="md:col-span-2">
+            {/* Span 2: PT Angkasa Pura II */}
+            <motion.div variants={itemVariants} className="md:col-span-2 relative">
+              <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group">
+                <CardHeader className="pb-4">
+                  <div className="flex justify-between items-start gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-800 group-hover:border-emerald-500/30 transition-colors shadow-inner flex-shrink-0">
+                        <Wrench className="w-6 h-6 text-emerald-500/70" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-xl font-bold text-foreground group-hover:text-emerald-100 transition-colors tracking-tight">
+                          Intern / Electronic Technician
+                        </CardTitle>
+                        <CardDescription className="text-zinc-400 font-mono text-sm mt-1">
+                          @ PT Angkasa Pura II
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-2">
+                  <p className="text-zinc-300 leading-relaxed mb-6 font-medium">
+                    Conducted preventive maintenance on airport electronic equipment. Repaired and troubleshot over <span className="text-emerald-400 font-bold">15 CCTV cameras</span> and <span className="text-emerald-400 font-bold">10 smoke detectors</span>. Calibrated electronic systems to reduce downtime.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary" className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"><Wrench className="w-3 h-3 text-emerald-500/50" /> Preventive Maintenance</Badge>
+                    <Badge variant="secondary" className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"><Activity className="w-3 h-3 text-emerald-500/50" /> Troubleshooting</Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Span 3: Certifications Vault */}
+            <motion.div variants={itemVariants} className="md:col-span-3">
               <Card className="h-full bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05),transparent_50%)] bg-zinc-950/60 border-zinc-800/50 hover:border-emerald-500/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.12)] group overflow-hidden relative">
                  <div className="absolute right-0 bottom-0 opacity-[0.02] pointer-events-none transition-opacity group-hover:opacity-[0.05]">
                   <Shield className="w-64 h-64 -mb-12 -mr-12" />
@@ -443,22 +573,46 @@ function ExperienceEducationBento() {
                   </div>
                 </CardHeader>
                 <CardContent className="pt-6 relative z-10">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
-                      { name: "CRTOM", full: "Certified Red Team Operations Management", year: "2025", icon: <Bug className="w-4 h-4 text-rose-400" /> },
-                      { name: "CCEP", full: "Certified Cybersecurity Educator Professional", year: "2025", icon: <Shield className="w-4 h-4 text-emerald-400" /> },
-                      { name: "AWS", full: "AWS Cloud Engineer Academy", year: "2024", icon: <Cloud className="w-4 h-4 text-blue-400" /> },
+                      { 
+                        name: "CRTOM", 
+                        full: "Certified Red Team Operations Management", 
+                        year: "2025", 
+                        icon: <Bug className="w-5 h-5 text-rose-400" />,
+                        link: "https://drive.google.com/file/d/1Mo04sac47Ce99C-Ti4QXeChPDkB9Uy-i/view?usp=sharing"
+                      },
+                      { 
+                        name: "CCEP", 
+                        full: "Certified Cybersecurity Educator Professional", 
+                        year: "2025", 
+                        icon: <Shield className="w-5 h-5 text-emerald-400" />,
+                        link: "https://drive.google.com/file/d/1u6KjaqlC4c7oNOY0MdFvyR-MekrUfd6/view?usp=sharing"
+                      },
+                      { 
+                        name: "AWS", 
+                        full: "AWS Cloud Engineer Academy", 
+                        year: "2024", 
+                        icon: <Cloud className="w-5 h-5 text-blue-400" />,
+                        link: null
+                      },
                     ].map((cert, i) => (
-                      <div key={i} className="flex gap-4 p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover:bg-zinc-900/80 hover:border-zinc-700 transition-colors">
-                        <div className="shrink-0 p-2 bg-zinc-950 rounded-lg border border-zinc-800 self-start">
+                      <div key={i} className={`flex gap-4 p-5 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all duration-300 relative ${cert.link ? 'cursor-pointer hover:-translate-y-1 hover:shadow-lg' : ''}`}>
+                         {cert.link && (
+                          <a href={cert.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 rounded-xl" aria-label={`View ${cert.name} certificate`} />
+                         )}
+                        <div className="shrink-0 p-3 bg-zinc-950 rounded-lg border border-zinc-800 self-start relative z-20 pointer-events-none">
                           {cert.icon}
                         </div>
-                        <div>
-                          <p className="text-zinc-200 font-bold tracking-tight text-sm flex items-center gap-2">
-                            {cert.name}
-                            <Badge variant="outline" className="border-zinc-800 text-[9px] px-1.5 py-0 h-4 font-mono text-zinc-500">{cert.year}</Badge>
+                        <div className="flex-1 relative z-20 pointer-events-none">
+                          <p className="text-zinc-200 font-bold tracking-tight text-sm flex items-center justify-between gap-2">
+                            <span className="flex items-center gap-2">
+                              {cert.name}
+                              <Badge variant="outline" className="border-zinc-800 text-[9px] px-1.5 py-0 h-4 font-mono text-zinc-500">{cert.year}</Badge>
+                            </span>
+                            {cert.link && <ExternalLink className="w-3.5 h-3.5 text-zinc-500 transition-colors" />}
                           </p>
-                          <p className="text-zinc-400 text-xs mt-1 leading-relaxed pr-2">{cert.full}</p>
+                          <p className="text-zinc-400 text-xs mt-1.5 leading-relaxed pr-2">{cert.full}</p>
                         </div>
                       </div>
                     ))}
@@ -489,7 +643,7 @@ function ProjectsBento() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
   };
 
   return (
@@ -661,6 +815,7 @@ export default function Home() {
     <main className="relative bg-zinc-950 min-h-screen scanlines selection:bg-emerald-500/30">
       <HeroSection onOpenChat={() => setIsChatOpen(true)} />
       
+      <TelemetryMetrics />
       {/* Reduced padding between sections for cohesive bento feel */}
       <div className="flex flex-col gap-4">
         <ExperienceEducationBento />
