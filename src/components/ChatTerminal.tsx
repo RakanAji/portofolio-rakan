@@ -47,8 +47,10 @@ export default function ChatTerminal({ isOpen, onClose }: ChatTerminalProps) {
 
   return (
     <div
-      className="fixed bottom-6 right-6 z-50 flex flex-col
-        w-[400px] h-[500px]
+      className="fixed z-50
+        bottom-4 right-4 left-4 sm:left-auto sm:right-6 sm:bottom-6
+        w-auto sm:w-[400px] h-[70vh] sm:h-[500px] max-h-[85vh]
+        flex flex-col
         bg-zinc-950 border border-zinc-800 rounded-xl
         font-mono text-sm
         shadow-[0_0_30px_rgba(16,185,129,0.08),0_0_60px_rgba(16,185,129,0.04)]
@@ -80,7 +82,7 @@ export default function ChatTerminal({ isOpen, onClose }: ChatTerminalProps) {
       </div>
 
       {/* ── Chat Area ── */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scroll-smooth">
+      <div className="flex-1 min-h-0 overflow-y-auto px-4 py-4 space-y-4 scroll-smooth">
         {/* Welcome message */}
         {messages.length === 0 && (
           <div className="text-zinc-600 text-xs leading-relaxed space-y-2">
