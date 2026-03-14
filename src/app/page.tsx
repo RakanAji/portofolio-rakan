@@ -6,6 +6,7 @@ import { Terminal, Shield, ChevronDown, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import ChatTerminal from "@/components/ChatTerminal";
 
 // --- Terminal Typing Effect Hook ---
 function useTypingEffect(text: string, speed: number = 80, delay: number = 0) {
@@ -95,7 +96,7 @@ function GridBackground() {
 }
 
 // --- Hero Section ---
-function HeroSection() {
+function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   const { displayedText: tagline, isComplete: taglineComplete } =
     useTypingEffect("root@rakan:~# whoami", 70, 500);
 
@@ -199,6 +200,7 @@ function HeroSection() {
               variant="ghost"
               size="lg"
               className="font-mono text-sm text-zinc-400 hover:text-emerald-400 hover:bg-zinc-800/50 transition-all duration-300 cursor-pointer h-11 px-6"
+              onClick={onOpenChat}
             >
               <Sparkles className="w-4 h-4 mr-1" />
               Access AI Assistant
@@ -400,10 +402,13 @@ function AboutSection() {
 
 // --- Main Page ---
 export default function Home() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
   return (
     <main className="relative bg-zinc-950 min-h-screen scanlines">
-      <HeroSection />
+      <HeroSection onOpenChat={() => setIsChatOpen(true)} />
       <AboutSection />
+      <ChatTerminal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </main>
   );
 }

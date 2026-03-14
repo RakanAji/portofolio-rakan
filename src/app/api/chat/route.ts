@@ -6,6 +6,11 @@ export const maxDuration = 30;
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
+  const coreMessages = messages.map((msg: any) => ({
+    role: msg.role,
+    content: msg.parts ? msg.parts.map((p: any) => p.text).join('') : msg.content,
+  }));
+
   const systemPrompt = `You are "Rakan-AI", the personal AI assistant and digital representative of Rakan, an Information Security & IoT Engineer based in Indonesia. Your tone is professional, sharp, slightly technical, and highly analytical. You speak like a seasoned cybersecurity expert—confident but never arrogant. 
   
   Core Knowledge:
@@ -22,9 +27,9 @@ export async function POST(req: Request) {
   - Keep responses concise and high-impact.`;
 
   const result = streamText({
-    model: google("gemini-1.5-flash"),
+    model: google("gemini-2.5-flash"),
     system: systemPrompt,
-    messages,
+    messages: coreMessages,
   });
 
   return result.toTextStreamResponse();
