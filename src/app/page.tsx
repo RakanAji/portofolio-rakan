@@ -6,7 +6,8 @@ import Image from "next/image";
 import { 
   Terminal, Shield, ChevronDown, Sparkles, Github, Linkedin, Mail, 
   Briefcase, GraduationCap, Award, Server, Activity, Bug, Code2, 
-  Cpu, Lock, Database, Network, ExternalLink, Download, FileText, Wrench
+  Cpu, Lock, Database, Network, ExternalLink, Download, FileText, Wrench, Users, BookOpen,
+  Cloud
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -163,7 +164,7 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-0">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-0">
       <ParticlesBackground />
       <GridBackground />
 
@@ -363,8 +364,8 @@ function TelemetryMetrics() {
   );
 }
 
-// --- Experience & Education Bento Grid ---
-function ExperienceEducationBento() {
+// --- Experience Bento Grid ---
+function ExperienceBento() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -379,7 +380,7 @@ function ExperienceEducationBento() {
   };
 
   return (
-    <section id="experience-bento" ref={ref} className="relative py-16 px-6 md:px-12 lg:px-24">
+    <section id="experience" ref={ref} className="relative py-16 px-6 md:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto">
         <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
           
@@ -392,12 +393,14 @@ function ExperienceEducationBento() {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Span 2: PT DCI */}
-            <motion.div variants={itemVariants} className="md:col-span-2">
+          {/* 3-Column System tailored for perfect rectangular wrapping */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            
+            {/* Span 3: PT DCI */}
+            <motion.div variants={itemVariants} className="col-span-1 lg:col-span-3">
               <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.12)] group">
                 <CardHeader className="pb-4 border-b border-zinc-800/30">
-                  <div className="flex justify-between items-start gap-4">
+                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                     <div className="flex items-center gap-4">
                       <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-800 group-hover:border-emerald-500/30 transition-colors shadow-inner">
                         <Server className="w-6 h-6 text-emerald-400" />
@@ -411,7 +414,7 @@ function ExperienceEducationBento() {
                         </CardDescription>
                       </div>
                     </div>
-                    <Badge variant="outline" className="border-zinc-800 text-zinc-400 font-mono text-xs whitespace-nowrap bg-zinc-900/50 transition-colors group-hover:border-emerald-900/50 group-hover:text-emerald-400 group-hover:bg-emerald-500/10">
+                    <Badge variant="outline" className="w-fit border-zinc-800 text-zinc-400 font-mono text-xs whitespace-nowrap bg-zinc-900/50 transition-colors group-hover:border-emerald-900/50 group-hover:text-emerald-400 group-hover:bg-emerald-500/10">
                       Jul 2025 - Present
                     </Badge>
                   </div>
@@ -433,94 +436,8 @@ function ExperienceEducationBento() {
               </Card>
             </motion.div>
 
-            {/* Span 1: Practicum Assistant */}
-            <motion.div variants={itemVariants} className="md:col-span-1">
-              <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group">
-                <CardHeader className="pb-4">
-                  <div className="p-2.5 bg-zinc-900 rounded-lg border border-zinc-800 w-fit mb-3 group-hover:border-emerald-500/30 transition-colors">
-                    <Code2 className="w-5 h-5 text-emerald-500/70" />
-                  </div>
-                  <CardTitle className="text-lg font-bold text-foreground tracking-tight group-hover:text-emerald-100 transition-colors">
-                    Practicum Assistant
-                  </CardTitle>
-                  <CardDescription className="text-zinc-500 font-mono text-xs">
-                    @ Telkom University
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-                    Guided students across <span className="text-emerald-400/90 font-medium">6 distinct technical modules</span>, demonstrating strong communication and leadership in explaining complex security and engineering concepts.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="outline" className="border-zinc-800 text-zinc-500 text-[10px] font-mono"><Users className="w-3 h-3 mr-1" />Mentorship</Badge>
-                    <Badge variant="outline" className="border-zinc-800 text-zinc-500 text-[10px] font-mono"><BookOpen className="w-3 h-3 mr-1" />Modules</Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Span 1: Dossier Download (Moved under Practicum Assistant) */}
-            <motion.div variants={itemVariants} className="md:col-span-1">
-              <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(16,185,129,0.15)] group relative overflow-hidden flex flex-col justify-center items-center text-center">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <CardContent className="p-8 relative z-10 w-full flex flex-col items-center justify-center">
-                  <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-emerald-500/10 rounded-full mb-6 border border-emerald-500/20 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-500 shadow-inner">
-                    <FileText className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400 glow-emerald" />
-                  </div>
-                  <h3 className="font-mono text-sm text-emerald-400 mb-6 glow-emerald group-hover:tracking-wide transition-all">
-                    &gt; ./download_dossier.sh
-                  </h3>
-                  <Button variant="outline" className="w-full max-w-[200px] border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 font-mono text-xs h-10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all">
-                    <Download className="w-4 h-4 mr-2" />
-                    [ Extract Resume ]
-                  </Button>
-                  <p className="text-[10px] text-zinc-500 mt-4 font-mono leading-relaxed max-w-[180px]">
-                    Classified technical record.<br/> Authorized personnel only.
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Span 1: Education */}
-            <motion.div variants={itemVariants} className="md:col-span-1">
-              <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group relative overflow-hidden">
-                <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <GraduationCap className="w-32 h-32" />
-                </div>
-                <CardHeader className="pb-4 relative z-10">
-                  <div className="flex items-center gap-2 mb-2 text-emerald-500/70 group-hover:text-emerald-400 transition-colors border border-emerald-500/20 bg-emerald-500/5 w-fit px-2 py-1 rounded text-xs font-mono">
-                    <GraduationCap className="w-3 h-3" /> EDU_RECORD
-                  </div>
-                  <CardTitle className="text-lg font-bold text-foreground leading-tight">Telkom University</CardTitle>
-                  <CardDescription className="text-zinc-400 text-sm mt-1">
-                    B.Eng Telecommunications
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative z-10">
-                  <div className="space-y-4">
-                    <div className="flex gap-4">
-                      <div>
-                        <p className="text-xs text-zinc-500 font-mono mb-1">GPA</p>
-                        <p className="text-xl font-bold text-emerald-400 glow-emerald">3.54</p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-zinc-500 font-mono mb-1">Period</p>
-                        <p className="text-sm text-zinc-300 font-medium mt-1">2021 &mdash; 2025</p>
-                      </div>
-                    </div>
-                    <div className="pt-4 border-t border-zinc-800/50">
-                      <p className="text-xs text-zinc-500 font-mono mb-2">CAPSTONE_PROJECT</p>
-                      <p className="text-zinc-400 text-sm leading-relaxed">
-                        Automatic Speed Warning and Accident Detection.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
             {/* Span 2: PT Angkasa Pura II */}
-            <motion.div variants={itemVariants} className="md:col-span-2 relative">
+            <motion.div variants={itemVariants} className="col-span-1 lg:col-span-2 relative">
               <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group">
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start gap-4">
@@ -543,7 +460,7 @@ function ExperienceEducationBento() {
                   <p className="text-zinc-300 leading-relaxed mb-6 font-medium">
                     Conducted preventive maintenance on airport electronic equipment. Repaired and troubleshot over <span className="text-emerald-400 font-bold">15 CCTV cameras</span> and <span className="text-emerald-400 font-bold">10 smoke detectors</span>. Calibrated electronic systems to reduce downtime.
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     <Badge variant="secondary" className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"><Wrench className="w-3 h-3 text-emerald-500/50" /> Preventive Maintenance</Badge>
                     <Badge variant="secondary" className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"><Activity className="w-3 h-3 text-emerald-500/50" /> Troubleshooting</Badge>
                   </div>
@@ -551,71 +468,27 @@ function ExperienceEducationBento() {
               </Card>
             </motion.div>
 
-            {/* Span 3: Certifications Vault */}
-            <motion.div variants={itemVariants} className="md:col-span-3">
-              <Card className="h-full bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05),transparent_50%)] bg-zinc-950/60 border-zinc-800/50 hover:border-emerald-500/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.12)] group overflow-hidden relative">
-                 <div className="absolute right-0 bottom-0 opacity-[0.02] pointer-events-none transition-opacity group-hover:opacity-[0.05]">
-                  <Shield className="w-64 h-64 -mb-12 -mr-12" />
-                </div>
-                <CardHeader className="pb-4 relative z-10 border-b border-zinc-800/30">
-                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 bg-emerald-500/10 rounded-xl border border-emerald-500/20 shadow-inner group-hover:border-emerald-500/50 group-hover:bg-emerald-500/20 transition-all">
-                      <Award className="w-6 h-6 text-emerald-400" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl font-bold text-foreground group-hover:text-emerald-50 transition-colors tracking-tight">
-                        Credentials Vault
-                      </CardTitle>
-                      <CardDescription className="text-zinc-400 font-mono text-xs">
-                        Verified Certifications & Licenses
-                      </CardDescription>
-                    </div>
+            {/* Span 1: Practicum Assistant */}
+            <motion.div variants={itemVariants} className="col-span-1 lg:col-span-1">
+              <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group flex flex-col">
+                <CardHeader className="pb-4">
+                  <div className="p-2.5 bg-zinc-900 rounded-lg border border-zinc-800 w-fit mb-3 group-hover:border-emerald-500/30 transition-colors">
+                    <Code2 className="w-5 h-5 text-emerald-500/70" />
                   </div>
+                  <CardTitle className="text-lg font-bold text-foreground tracking-tight group-hover:text-emerald-100 transition-colors">
+                    Practicum Assistant
+                  </CardTitle>
+                  <CardDescription className="text-zinc-500 font-mono text-xs">
+                    @ Telkom University
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-6 relative z-10">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {[
-                      { 
-                        name: "CRTOM", 
-                        full: "Certified Red Team Operations Management", 
-                        year: "2025", 
-                        icon: <Bug className="w-5 h-5 text-rose-400" />,
-                        link: "https://drive.google.com/file/d/1Mo04sac47Ce99C-Ti4QXeChPDkB9Uy-i/view?usp=sharing"
-                      },
-                      { 
-                        name: "CCEP", 
-                        full: "Certified Cybersecurity Educator Professional", 
-                        year: "2025", 
-                        icon: <Shield className="w-5 h-5 text-emerald-400" />,
-                        link: "https://drive.google.com/file/d/1u6KjaqlC4c7oNOY0MdFvyR-MekrUfd6/view?usp=sharing"
-                      },
-                      { 
-                        name: "AWS", 
-                        full: "AWS Cloud Engineer Academy", 
-                        year: "2024", 
-                        icon: <Cloud className="w-5 h-5 text-blue-400" />,
-                        link: null
-                      },
-                    ].map((cert, i) => (
-                      <div key={i} className={`flex gap-4 p-5 rounded-xl bg-zinc-900/40 border border-zinc-800/50 hover:bg-zinc-900/80 hover:border-zinc-700 transition-all duration-300 relative ${cert.link ? 'cursor-pointer hover:-translate-y-1 hover:shadow-lg' : ''}`}>
-                         {cert.link && (
-                          <a href={cert.link} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10 rounded-xl" aria-label={`View ${cert.name} certificate`} />
-                         )}
-                        <div className="shrink-0 p-3 bg-zinc-950 rounded-lg border border-zinc-800 self-start relative z-20 pointer-events-none">
-                          {cert.icon}
-                        </div>
-                        <div className="flex-1 relative z-20 pointer-events-none">
-                          <p className="text-zinc-200 font-bold tracking-tight text-sm flex items-center justify-between gap-2">
-                            <span className="flex items-center gap-2">
-                              {cert.name}
-                              <Badge variant="outline" className="border-zinc-800 text-[9px] px-1.5 py-0 h-4 font-mono text-zinc-500">{cert.year}</Badge>
-                            </span>
-                            {cert.link && <ExternalLink className="w-3.5 h-3.5 text-zinc-500 transition-colors" />}
-                          </p>
-                          <p className="text-zinc-400 text-xs mt-1.5 leading-relaxed pr-2">{cert.full}</p>
-                        </div>
-                      </div>
-                    ))}
+                <CardContent className="flex-1 flex flex-col">
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+                    Guided students across <span className="text-emerald-400/90 font-medium">6 distinct technical modules</span>, demonstrating strong communication and leadership in explaining complex security and engineering concepts.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    <Badge variant="outline" className="border-zinc-800 text-zinc-500 text-[10px] font-mono"><Users className="w-3 h-3 mr-1" />Mentorship</Badge>
+                    <Badge variant="outline" className="border-zinc-800 text-zinc-500 text-[10px] font-mono"><BookOpen className="w-3 h-3 mr-1" />Modules</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -628,8 +501,235 @@ function ExperienceEducationBento() {
   );
 }
 
-// Additional icons needed for components
-import { Cloud, BookOpen, Users } from "lucide-react";
+// --- Education & Vault Bento Grid ---
+function EducationVaultBento() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+  };
+
+  return (
+    <section
+      id="vault"
+      ref={ref}
+      className="relative py-8 px-6 md:px-12 lg:px-24"
+    >
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4"
+        >
+          {/* Span 1: Dossier Download */}
+          <motion.div
+            variants={itemVariants}
+            className="md:col-span-2 lg:col-span-1 border-t border-zinc-900 pt-4 md:border-t-0 md:pt-0"
+          >
+            <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(16,185,129,0.15)] group relative overflow-hidden flex flex-col justify-center items-center text-center">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <CardContent className="p-8 relative z-10 w-full flex flex-col items-center justify-center">
+                <div className="inline-flex items-center justify-center p-3 sm:p-4 bg-emerald-500/10 rounded-full mb-6 border border-emerald-500/20 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-500 shadow-inner">
+                  <FileText className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-400 glow-emerald" />
+                </div>
+                <h3 className="font-mono text-xs text-emerald-400 mb-6 glow-emerald group-hover:tracking-wide transition-all">
+                  &gt; ./dossier.sh
+                </h3>
+                <Button
+                  variant="outline"
+                  className="w-full max-w-[200px] border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 font-mono text-xs h-10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all flexshrink"
+                >
+                  <Download className="w-4 h-4 mr-2" />[ Extract ]
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Span 1: Education */}
+          <motion.div
+            variants={itemVariants}
+            className="md:col-span-2 lg:col-span-2"
+          >
+            <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group relative overflow-hidden">
+              <div className="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                <GraduationCap className="w-32 h-32" />
+              </div>
+              <CardHeader className="pb-4 relative z-10">
+                <div className="flex items-center gap-2 mb-2 text-emerald-500/70 group-hover:text-emerald-400 transition-colors border border-emerald-500/20 bg-emerald-500/5 w-fit px-2 py-1 rounded text-xs font-mono">
+                  <GraduationCap className="w-3 h-3" /> EDU_RECORD
+                </div>
+                <CardTitle className="text-lg font-bold text-foreground leading-tight">
+                  Telkom University
+                </CardTitle>
+                <CardDescription className="text-zinc-400 text-sm mt-1">
+                  B.Eng Telecommunications
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="relative z-10">
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <div>
+                      <p className="text-xs text-zinc-500 font-mono mb-1">
+                        GPA
+                      </p>
+                      <p className="text-xl font-bold text-emerald-400 glow-emerald">
+                        3.54
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-zinc-500 font-mono mb-1">
+                        Period
+                      </p>
+                      <p className="text-sm text-zinc-300 font-medium mt-1">
+                        2021 &mdash; 2025
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pt-4 border-t border-zinc-800/50">
+                    <p className="text-xs text-zinc-500 font-mono mb-2">
+                      CAPSTONE_PROJECT
+                    </p>
+                    <p className="text-zinc-400 text-sm leading-relaxed">
+                      Automatic Speed Warning and Accident Detection.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Span 3: Certifications Vault */}
+          <motion.div
+            variants={itemVariants}
+            className="md:col-span-4 lg:col-span-2"
+          >
+            <Card className="h-full bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05),transparent_50%)] bg-zinc-950/60 border-zinc-800/50 hover:border-emerald-500/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.12)] group overflow-hidden relative">
+              <div className="absolute right-0 bottom-0 opacity-[0.02] pointer-events-none transition-opacity group-hover:opacity-[0.05]">
+                <Shield className="w-64 h-64 -mb-12 -mr-12" />
+              </div>
+              <CardHeader className="pb-4 relative z-10 border-b border-zinc-800/30">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 bg-emerald-500/10 rounded-xl border border-emerald-500/20 shadow-inner group-hover:border-emerald-500/50 group-hover:bg-emerald-500/20 transition-all">
+                    <Award className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-xl font-bold text-foreground group-hover:text-emerald-50 transition-colors tracking-tight">
+                      Credentials Vault
+                    </CardTitle>
+                    <CardDescription className="text-zinc-400 font-mono text-xs">
+                      Verified Certifications & Licenses
+                    </CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="pt-5 relative z-10">
+                <div className="space-y-3">
+                  {[
+                    {
+                      name: "CWAPJ",
+                      full: "Certified Web Application Penetration Tester",
+                      year: "2025",
+                      icon: <Bug className="w-4 h-4 text-rose-400" />,
+                      link: "https://drive.google.com/file/d/18bCLFIgvq-9JbySn_xvAmRO3ynvTT3h5/view?usp=sharing",
+                    },
+                    {
+                      name: "CRTOM",
+                      full: "Certified Red Team Operations Management",
+                      year: "2025",
+                      icon: <Bug className="w-4 h-4 text-rose-400" />,
+                      link: "https://drive.google.com/file/d/1Mo04sac47Ce99C-Ti4QXeChPDkB9Uy-i/view?usp=sharing",
+                    },
+                    {
+                      name: "CCEP",
+                      full: "Certified Cybersecurity Educator Professional",
+                      year: "2025",
+                      icon: <Shield className="w-4 h-4 text-emerald-400" />,
+                      link: "https://drive.google.com/file/d/1u6KjaqlC4c7oNOY0MdFvy_R-MekrUfd6/view?usp=sharing",
+                    },
+                    {
+                      name: "AWS",
+                      full: "AWS Cloud Engineer Academy",
+                      year: "2024",
+                      icon: <Cloud className="w-4 h-4 text-blue-400" />,
+                      link: "https://drive.google.com/file/d/1C0OaqPqz7k8PXlvS4ybw_kwqs0WFi-MJ/view?usp=sharing",
+                    },
+                  ].map((cert, i) => (
+                    <div
+                      key={i}
+                      className={`flex items-center gap-3 p-3 rounded-lg bg-zinc-900/40 border border-zinc-800/50 hover:bg-zinc-900/80 hover:border-zinc-700/80 transition-all duration-300 relative ${cert.link ? "cursor-pointer hover:border-emerald-500/30 hover:shadow-[0_2px_10px_rgba(16,185,129,0.08)]" : ""}`}
+                    >
+                      {cert.link && (
+                        <a
+                          href={cert.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute inset-0 z-10 rounded-lg"
+                          aria-label={`View ${cert.name} certificate`}
+                        />
+                      )}
+                      <div className="shrink-0 p-2 bg-zinc-950 rounded-md border border-zinc-800 relative z-20 pointer-events-none">
+                        {cert.icon}
+                      </div>
+                      <div className="flex-1 min-w-0 relative z-20 pointer-events-none">
+                        <div className="flex items-center gap-2">
+                          <span className="text-zinc-200 font-bold text-sm truncate">
+                            {cert.name}
+                          </span>
+                          <Badge
+                            variant="outline"
+                            className="border-zinc-800 text-[9px] px-1.5 py-0 h-4 font-mono text-zinc-500 shrink-0"
+                          >
+                            {cert.year}
+                          </Badge>
+                        </div>
+                        <p className="text-zinc-500 text-xs mt-0.5 truncate">
+                          {cert.full}
+                        </p>
+                      </div>
+                      {cert.link && (
+                        <ExternalLink className="w-3.5 h-3.5 text-zinc-600 shrink-0 relative z-20 pointer-events-none" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// --- Sticky Navbar ---
+function StickyNavbar() {
+  return (
+    <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800/50">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center sm:justify-end gap-6 sm:gap-8">
+        <a href="#hero" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
+          <span className="text-zinc-600 mr-1">//</span>Home
+        </a>
+        <a href="#experience" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
+          <span className="text-zinc-600 mr-1">//</span>Experience
+        </a>
+        <a href="#projects" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
+          <span className="text-zinc-600 mr-1">//</span>Projects
+        </a>
+        <a href="#vault" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
+          <span className="text-zinc-600 mr-1">//</span>Vault
+        </a>
+      </div>
+    </nav>
+  );
+}
 
 // --- Projects Bento Grid ---
 function ProjectsBento() {
@@ -647,7 +747,7 @@ function ProjectsBento() {
   };
 
   return (
-    <section id="projects-bento" ref={ref} className="relative py-16 px-6 md:px-12 lg:px-24 mb-24">
+    <section id="projects" ref={ref} className="relative py-16 px-6 md:px-12 lg:px-24 mb-24">
       <div className="max-w-6xl mx-auto">
         <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
           
@@ -716,6 +816,11 @@ function ProjectsBento() {
                         <p className="text-xs text-zinc-500 font-mono mt-1">Motorcrash Alert & Autoengine Shutdown</p>
                       </div>
                     </div>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-cyan-500/10 hover:text-cyan-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50" asChild>
+                      <a href="https://drive.google.com/file/d/1oKS0p0bM3XNEgT2sWa5xqiqk1z03ioC9/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </Button>
                   </div>
                   <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
                     An innovative accident detection device using MPU 6050 sensor and NEO-6M GPS, integrated with a Telegram application for real-time alerts. 
@@ -813,12 +918,14 @@ export default function Home() {
 
   return (
     <main className="relative bg-zinc-950 min-h-screen scanlines selection:bg-emerald-500/30">
+      <StickyNavbar />
       <HeroSection onOpenChat={() => setIsChatOpen(true)} />
       
       <TelemetryMetrics />
       {/* Reduced padding between sections for cohesive bento feel */}
       <div className="flex flex-col gap-4">
-        <ExperienceEducationBento />
+        <ExperienceBento />
+        <EducationVaultBento />
         <ProjectsBento />
       </div>
       
