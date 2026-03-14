@@ -3,14 +3,41 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { 
-  Terminal, Shield, ChevronDown, Sparkles, Github, Linkedin, Mail, 
-  Briefcase, GraduationCap, Award, Server, Activity, Bug, Code2, 
-  Cpu, Lock, Database, Network, ExternalLink, Download, FileText, Wrench, Users, BookOpen,
-  Cloud
+import {
+  Terminal,
+  Shield,
+  ChevronDown,
+  Sparkles,
+  Github,
+  Linkedin,
+  Mail,
+  Briefcase,
+  GraduationCap,
+  Award,
+  Server,
+  Activity,
+  Bug,
+  Code2,
+  Cpu,
+  Lock,
+  Database,
+  Network,
+  ExternalLink,
+  Download,
+  FileText,
+  Wrench,
+  Users,
+  BookOpen,
+  Cloud,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ChatTerminal from "@/components/ChatTerminal";
 
@@ -48,7 +75,9 @@ function useTypingEffect(text: string, speed: number = 80, delay: number = 0) {
 // --- Floating Particles Background ---
 function ParticlesBackground() {
   const [mounted, setMounted] = useState(false);
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([]);
+  const [particles, setParticles] = useState<
+    Array<{ id: number; x: number; y: number; delay: number; duration: number }>
+  >([]);
 
   useEffect(() => {
     setMounted(true);
@@ -59,7 +88,7 @@ function ParticlesBackground() {
         y: Math.random() * 100,
         delay: Math.random() * 5,
         duration: 10 + Math.random() * 20,
-      }))
+      })),
     );
   }, []);
 
@@ -77,8 +106,18 @@ function ParticlesBackground() {
             opacity: 0,
           }}
           animate={{
-            y: [`${p.y}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`, `${p.y}%`],
-            x: [`${p.x}%`, `${Math.random() * 100}%`, `${Math.random() * 100}%`, `${p.x}%`],
+            y: [
+              `${p.y}%`,
+              `${Math.random() * 100}%`,
+              `${Math.random() * 100}%`,
+              `${p.y}%`,
+            ],
+            x: [
+              `${p.x}%`,
+              `${Math.random() * 100}%`,
+              `${Math.random() * 100}%`,
+              `${p.x}%`,
+            ],
             opacity: [0, 0.6, 0.6, 0],
           }}
           transition={{
@@ -114,10 +153,19 @@ function GridBackground() {
 // --- Tech Stack Marquee ---
 function TechStackMarquee() {
   const stack = [
-    "Solidity", "Foundry", "SentinelOne", "Wazuh", "Linux Server Admin", 
-    "Burp Suite", "Python", "C", "ESP32", "Next.js", "TailwindCSS"
+    "Solidity",
+    "Foundry",
+    "SentinelOne",
+    "Wazuh",
+    "Linux Server Admin",
+    "Burp Suite",
+    "Python",
+    "C",
+    "ESP32",
+    "Next.js",
+    "TailwindCSS",
   ];
-  
+
   // Duplicate for seamless loop
   const displayStack = [...stack, ...stack, ...stack];
 
@@ -126,7 +174,7 @@ function TechStackMarquee() {
       {/* Fade edges */}
       <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent z-10" />
       <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-zinc-950 to-transparent z-10" />
-      
+
       <motion.div
         className="flex whitespace-nowrap min-w-max gap-8 items-center"
         animate={{ x: ["0%", "-33.33%"] }}
@@ -134,7 +182,9 @@ function TechStackMarquee() {
       >
         {displayStack.map((tech, i) => (
           <div key={i} className="flex items-center gap-2 group">
-            <span className="text-zinc-600 font-mono text-sm leading-none">•</span>
+            <span className="text-zinc-600 font-mono text-sm leading-none">
+              •
+            </span>
             <span className="text-zinc-500 font-mono text-sm leading-none tracking-wide hover:text-emerald-400 hover:glow-emerald transition-colors cursor-default">
               {tech}
             </span>
@@ -160,11 +210,18 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.25, 0.4, 0.25, 1] as const },
+    },
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-0">
+    <section
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-32 pb-0"
+    >
       <ParticlesBackground />
       <GridBackground />
 
@@ -208,28 +265,37 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
                   Building Trust
                 </span>
                 <br />
-                <span className="text-foreground">in a Decentralized World.</span>
+                <span className="text-foreground">
+                  in a Decentralized World.
+                </span>
               </motion.h1>
 
               <motion.p
                 variants={itemVariants}
                 className="text-base md:text-lg text-zinc-400 max-w-2xl mb-10 leading-relaxed text-center lg:text-left"
               >
-                Information Security Engineer focused on bridging the gap between
-                hardware (IoT/OT) and the blockchain (EVM). Identifying
+                Information Security Engineer focused on bridging the gap
+                between hardware (IoT/OT) and the blockchain (EVM). Identifying
                 vulnerabilities before they are exploited.
               </motion.p>
 
-              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col sm:flex-row items-center gap-4"
+              >
                 <Button
                   variant="outline"
                   size="lg"
                   className="group font-mono text-sm border-emerald-500/30 text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300 transition-all duration-300 hover:shadow-[0_0_15px_rgba(16,185,129,0.2)] cursor-pointer h-11 px-6"
                   onClick={() => {
-                    document.getElementById("experience-bento")?.scrollIntoView({ behavior: "smooth" });
+                    document
+                      .getElementById("experience")
+                      ?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  <span className="text-zinc-500 group-hover:text-emerald-500/60 transition-colors mr-1">$</span>
+                  <span className="text-zinc-500 group-hover:text-emerald-500/60 transition-colors mr-1">
+                    $
+                  </span>
                   ./execute_portfolio
                   <ChevronDown className="w-4 h-4 ml-1 group-hover:translate-y-0.5 transition-transform" />
                 </Button>
@@ -245,14 +311,23 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
                 </Button>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-12">
-                <Badge variant="outline" className="border-emerald-900/50 text-emerald-400 font-mono text-xs bg-emerald-500/5 shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-12"
+              >
+                <Badge
+                  variant="outline"
+                  className="border-emerald-900/50 text-emerald-400 font-mono text-xs bg-emerald-500/5 shadow-[0_0_10px_rgba(16,185,129,0.1)]"
+                >
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block mr-1.5 animate-pulse glow-emerald" />
                   STATUS: ONLINE
                 </Badge>
-                <Badge variant="outline" className="border-zinc-800 text-zinc-500 font-mono text-xs bg-zinc-900/30">
+                <Badge
+                  variant="outline"
+                  className="border-zinc-800 text-zinc-500 font-mono text-xs bg-zinc-900/30"
+                >
                   <Shield className="w-3 h-3 mr-1.5" />
-                  CCEP · CRTOM
+                  CWAPJ · CRTOM · CCEP
                 </Badge>
               </motion.div>
             </motion.div>
@@ -262,7 +337,11 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={taglineComplete ? { opacity: 1, scale: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.6,
+              ease: [0.25, 0.4, 0.25, 1],
+            }}
             className="flex justify-center lg:justify-end w-full perspective-1000"
           >
             <Card className="w-full max-w-sm bg-zinc-950/80 border-emerald-900/50 shadow-[0_0_20px_rgba(16,185,129,0.1)] backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
@@ -270,33 +349,64 @@ function HeroSection({ onOpenChat }: { onOpenChat: () => void }) {
               <CardContent className="p-8 pt-10 flex flex-col items-center text-center relative z-10">
                 <div className="w-24 h-24 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-6 shadow-inner relative group-hover:border-emerald-500/50 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all duration-500 overflow-hidden z-10">
                   <div className="absolute inset-0 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/30 transition-colors z-0" />
-                  <Image 
-                    src="/profile.png" 
-                    width={120} 
-                    height={120} 
+                  <Image
+                    src="/profile.png"
+                    width={120}
+                    height={120}
                     alt="Rakan Aji Pratama"
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 z-10"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2 tracking-tight group-hover:text-emerald-50 transition-colors">Rakan Aji Pratama</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-2 tracking-tight group-hover:text-emerald-50 transition-colors">
+                  Rakan Aji Pratama
+                </h3>
                 <p className="text-sm text-zinc-400 font-mono mb-6 leading-relaxed">
-                  Information Security ||<br />IoT & OT Security Engineer
+                  Information Security ||
+                  <br />
+                  IoT & OT Security Engineer
                 </p>
                 <div className="flex items-center gap-3">
-                  <Button variant="outline" size="icon" className="border-zinc-800 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 rounded-full bg-zinc-900/50 hover:shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:scale-110" asChild>
-                    <a href="https://github.com/RakanAji" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="border-zinc-800 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 rounded-full bg-zinc-900/50 hover:shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:scale-110"
+                    asChild
+                  >
+                    <a
+                      href="https://github.com/RakanAji"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Github className="w-4 h-4" />
                       <span className="sr-only">GitHub</span>
                     </a>
                   </Button>
-                  <Button variant="outline" size="icon" className="border-zinc-800 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 rounded-full bg-zinc-900/50 hover:shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:scale-110" asChild>
-                    <a href="https://linkedin.com/in/rakanaji" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="border-zinc-800 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 rounded-full bg-zinc-900/50 hover:shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:scale-110"
+                    asChild
+                  >
+                    <a
+                      href="https://linkedin.com/in/rakanaji"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Linkedin className="w-4 h-4" />
                       <span className="sr-only">LinkedIn</span>
                     </a>
                   </Button>
-                  <Button variant="outline" size="icon" className="border-zinc-800 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 rounded-full bg-zinc-900/50 hover:shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:scale-110" asChild>
-                    <a href="mailto:pratamarakanaji@gmail.com" target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="border-zinc-800 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 rounded-full bg-zinc-900/50 hover:shadow-[0_0_10px_rgba(16,185,129,0.15)] hover:scale-110"
+                    asChild
+                  >
+                    <a
+                      href="mailto:pratamarakanaji@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Mail className="w-4 h-4" />
                       <span className="sr-only">Email</span>
                     </a>
@@ -329,16 +439,20 @@ function TelemetryMetrics() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
   };
 
   return (
-    <section className="relative px-6 md:px-12 lg:px-24 mb-12 py-8 relative z-20">
+    <section className="relative px-6 md:px-12 lg:px-24 mb-12 py-8 z-20">
       <div className="max-w-6xl mx-auto">
-        <motion.div 
-          variants={containerVariants} 
-          initial="hidden" 
-          whileInView="visible" 
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4"
         >
@@ -376,14 +490,25 @@ function ExperienceBento() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
   };
 
   return (
-    <section id="experience" ref={ref} className="relative py-16 px-6 md:px-12 lg:px-24">
+    <section
+      id="experience"
+      ref={ref}
+      className="relative py-16 px-6 md:px-12 lg:px-24 scroll-mt-24"
+    >
       <div className="max-w-6xl mx-auto">
-        <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
-          
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <motion.div variants={itemVariants} className="mb-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm">
               <Terminal className="w-4 h-4 text-emerald-500/60" />
@@ -395,9 +520,11 @@ function ExperienceBento() {
 
           {/* 3-Column System tailored for perfect rectangular wrapping */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            
             {/* Span 3: PT DCI */}
-            <motion.div variants={itemVariants} className="col-span-1 lg:col-span-3">
+            <motion.div
+              variants={itemVariants}
+              className="col-span-1 lg:col-span-3"
+            >
               <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.12)] group">
                 <CardHeader className="pb-4 border-b border-zinc-800/30">
                   <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
@@ -414,20 +541,38 @@ function ExperienceBento() {
                         </CardDescription>
                       </div>
                     </div>
-                    <Badge variant="outline" className="w-fit border-zinc-800 text-zinc-400 font-mono text-xs whitespace-nowrap bg-zinc-900/50 transition-colors group-hover:border-emerald-900/50 group-hover:text-emerald-400 group-hover:bg-emerald-500/10">
+                    <Badge
+                      variant="outline"
+                      className="w-fit border-zinc-800 text-zinc-400 font-mono text-xs whitespace-nowrap bg-zinc-900/50 transition-colors group-hover:border-emerald-900/50 group-hover:text-emerald-400 group-hover:bg-emerald-500/10"
+                    >
                       Jul 2025 - Present
                     </Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-6">
                   <p className="text-zinc-300 leading-relaxed mb-6 font-medium">
-                    Spearheaded the security hardening of over <span className="text-emerald-400 font-bold">300+ Windows and Linux servers</span>. 
-                    Monitored SIEM logs (Layer 3) to detect suspicious activities and execute rapid incident response. 
-                    Conducted exhaustive Vulnerability Assessments and implemented SentinelOne (EDR) & Wazuh.
+                    Spearheaded the security hardening of over{" "}
+                    <span className="text-emerald-400 font-bold">
+                      300+ Windows and Linux servers
+                    </span>
+                    . Monitored SIEM logs (Layer 3) to detect suspicious
+                    activities and execute rapid incident response. Conducted
+                    exhaustive Vulnerability Assessments and implemented
+                    SentinelOne (EDR) & Wazuh.
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {["SIEM Monitoring", "Server Hardening", "SentinelOne", "Wazuh", "Incident Response"].map(t => (
-                      <Badge key={t} variant="secondary" className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20">
+                    {[
+                      "SIEM Monitoring",
+                      "Server Hardening",
+                      "SentinelOne",
+                      "Wazuh",
+                      "Incident Response",
+                    ].map((t) => (
+                      <Badge
+                        key={t}
+                        variant="secondary"
+                        className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"
+                      >
                         <Activity className="w-3 h-3 text-emerald-500/50" /> {t}
                       </Badge>
                     ))}
@@ -437,7 +582,10 @@ function ExperienceBento() {
             </motion.div>
 
             {/* Span 2: PT Angkasa Pura II */}
-            <motion.div variants={itemVariants} className="col-span-1 lg:col-span-2 relative">
+            <motion.div
+              variants={itemVariants}
+              className="col-span-1 lg:col-span-2 relative"
+            >
               <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.01] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group">
                 <CardHeader className="pb-4">
                   <div className="flex justify-between items-start gap-4">
@@ -458,18 +606,42 @@ function ExperienceBento() {
                 </CardHeader>
                 <CardContent className="pt-2">
                   <p className="text-zinc-300 leading-relaxed mb-6 font-medium">
-                    Conducted preventive maintenance on airport electronic equipment. Repaired and troubleshot over <span className="text-emerald-400 font-bold">15 CCTV cameras</span> and <span className="text-emerald-400 font-bold">10 smoke detectors</span>. Calibrated electronic systems to reduce downtime.
+                    Conducted preventive maintenance on airport electronic
+                    equipment. Repaired and troubleshot over{" "}
+                    <span className="text-emerald-400 font-bold">
+                      15 CCTV cameras
+                    </span>{" "}
+                    and{" "}
+                    <span className="text-emerald-400 font-bold">
+                      10 smoke detectors
+                    </span>
+                    . Calibrated electronic systems to reduce downtime.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-auto">
-                    <Badge variant="secondary" className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"><Wrench className="w-3 h-3 text-emerald-500/50" /> Preventive Maintenance</Badge>
-                    <Badge variant="secondary" className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"><Activity className="w-3 h-3 text-emerald-500/50" /> Troubleshooting</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"
+                    >
+                      <Wrench className="w-3 h-3 text-emerald-500/50" />{" "}
+                      Preventive Maintenance
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="bg-zinc-900/80 border border-zinc-800 text-zinc-400 font-mono text-xs flex items-center gap-1 group-hover:border-emerald-500/20"
+                    >
+                      <Activity className="w-3 h-3 text-emerald-500/50" />{" "}
+                      Troubleshooting
+                    </Badge>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
 
             {/* Span 1: Practicum Assistant */}
-            <motion.div variants={itemVariants} className="col-span-1 lg:col-span-1">
+            <motion.div
+              variants={itemVariants}
+              className="col-span-1 lg:col-span-1"
+            >
               <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-emerald-500/40 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(16,185,129,0.08)] group flex flex-col">
                 <CardHeader className="pb-4">
                   <div className="p-2.5 bg-zinc-900 rounded-lg border border-zinc-800 w-fit mb-3 group-hover:border-emerald-500/30 transition-colors">
@@ -484,17 +656,231 @@ function ExperienceBento() {
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col">
                   <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-                    Guided students across <span className="text-emerald-400/90 font-medium">6 distinct technical modules</span>, demonstrating strong communication and leadership in explaining complex security and engineering concepts.
+                    Guided students across{" "}
+                    <span className="text-emerald-400/90 font-medium">
+                      6 distinct technical modules
+                    </span>
+                    , demonstrating strong communication and leadership in
+                    explaining complex security and engineering concepts.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-auto">
-                    <Badge variant="outline" className="border-zinc-800 text-zinc-500 text-[10px] font-mono"><Users className="w-3 h-3 mr-1" />Mentorship</Badge>
-                    <Badge variant="outline" className="border-zinc-800 text-zinc-500 text-[10px] font-mono"><BookOpen className="w-3 h-3 mr-1" />Modules</Badge>
+                    <Badge
+                      variant="outline"
+                      className="border-zinc-800 text-zinc-500 text-[10px] font-mono"
+                    >
+                      <Users className="w-3 h-3 mr-1" />
+                      Mentorship
+                    </Badge>
+                    <Badge
+                      variant="outline"
+                      className="border-zinc-800 text-zinc-500 text-[10px] font-mono"
+                    >
+                      <BookOpen className="w-3 h-3 mr-1" />
+                      Modules
+                    </Badge>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
-
           </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// --- Technical Arsenal (Skills Matrix) ---
+function TechnicalArsenal() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
+  };
+
+  const skillGroups = [
+    {
+      title: "Infrastructure / Blue Team",
+      icon: <Shield className="w-4 h-4" />,
+      borderColor: "border-emerald-500/30",
+      iconBg: "bg-emerald-500/10 text-emerald-400",
+      titleColor: "text-emerald-400/80",
+      hoverBorder: "hover:border-emerald-500/50",
+      hoverText: "hover:text-emerald-400",
+      hoverBg: "hover:bg-emerald-500/10",
+      hoverShadow: "hover:shadow-[0_0_12px_rgba(16,185,129,0.2)]",
+      dotColor: "text-emerald-500",
+      dotMuted: "text-emerald-900/40",
+      skills: [
+        { name: "Linux Server Admin", level: 5 },
+        { name: "Windows Server", level: 4 },
+        { name: "SIEM Management", level: 4 },
+        { name: "SentinelOne (EDR)", level: 5 },
+        { name: "Wazuh", level: 4 },
+        { name: "DLP", level: 3 },
+        { name: "PAM", level: 3 },
+        { name: "Firewall", level: 4 },
+      ],
+    },
+    {
+      title: "Red Team / OffSec",
+      icon: <Bug className="w-4 h-4" />,
+      borderColor: "border-rose-500/30",
+      iconBg: "bg-rose-500/10 text-rose-400",
+      titleColor: "text-rose-400/80",
+      hoverBorder: "hover:border-rose-500/50",
+      hoverText: "hover:text-rose-400",
+      hoverBg: "hover:bg-rose-500/10",
+      hoverShadow: "hover:shadow-[0_0_12px_rgba(244,63,94,0.2)]",
+      dotColor: "text-rose-500",
+      dotMuted: "text-rose-900/40",
+      skills: [
+        { name: "Burp Suite", level: 4 },
+        { name: "Vulnerability Assessment", level: 5 },
+        { name: "Penetration Testing", level: 4 },
+        { name: "Phishing Simulations", level: 3 },
+      ],
+    },
+    {
+      title: "Smart Contract Security",
+      icon: <Database className="w-4 h-4" />,
+      borderColor: "border-purple-500/30",
+      iconBg: "bg-purple-500/10 text-purple-400",
+      titleColor: "text-purple-400/80",
+      hoverBorder: "hover:border-purple-500/50",
+      hoverText: "hover:text-purple-400",
+      hoverBg: "hover:bg-purple-500/10",
+      hoverShadow: "hover:shadow-[0_0_12px_rgba(168,85,247,0.2)]",
+      dotColor: "text-purple-500",
+      dotMuted: "text-purple-900/40",
+      skills: [
+        { name: "Solidity", level: 4 },
+        { name: "Foundry", level: 4 },
+        { name: "ERC721 / ERC20", level: 4 },
+        { name: "Fuzzing", level: 3 },
+        { name: "Gas Optimization", level: 3 },
+        { name: "EIP-2535", level: 3 },
+      ],
+    },
+    {
+      title: "Development & IoT",
+      icon: <Cpu className="w-4 h-4" />,
+      borderColor: "border-cyan-500/30",
+      iconBg: "bg-cyan-500/10 text-cyan-400",
+      titleColor: "text-cyan-400/80",
+      hoverBorder: "hover:border-cyan-500/50",
+      hoverText: "hover:text-cyan-400",
+      hoverBg: "hover:bg-cyan-500/10",
+      hoverShadow: "hover:shadow-[0_0_12px_rgba(34,211,238,0.2)]",
+      dotColor: "text-cyan-500",
+      dotMuted: "text-cyan-900/40",
+      skills: [
+        { name: "Python", level: 4 },
+        { name: "Bash Scripting", level: 4 },
+        { name: "C", level: 3 },
+        { name: "ESP32", level: 4 },
+        { name: "Telemetry", level: 3 },
+      ],
+    },
+  ];
+
+  const ProficiencyDots = ({
+    level,
+    colorClass,
+    mutedClass,
+  }: {
+    level: number;
+    colorClass: string;
+    mutedClass: string;
+  }) => (
+    <span className="flex gap-[2px] ml-auto shrink-0">
+      {[1, 2, 3, 4, 5].map((dot) => (
+        <span
+          key={dot}
+          className={`text-[8px] leading-none ${dot <= level ? colorClass : mutedClass}`}
+        >
+          ●
+        </span>
+      ))}
+    </span>
+  );
+
+  return (
+    <section
+      id="arsenal"
+      ref={ref}
+      className="relative py-8 px-6 md:px-12 lg:px-24 scroll-mt-24"
+    >
+      <div className="max-w-6xl mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <motion.div variants={itemVariants}>
+            <Card className="bg-zinc-950/40 border-zinc-800/50 hover:border-zinc-700/50 backdrop-blur-sm transition-all duration-300 overflow-hidden relative">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(16,185,129,0.03),transparent_60%)]" />
+              <CardHeader className="pb-4 relative z-10 border-b border-zinc-800/30">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm w-fit">
+                  <Cpu className="w-4 h-4 text-emerald-500/60" />
+                  <span className="font-mono text-sm text-emerald-400 glow-emerald">
+                    cat skills_matrix.json
+                  </span>
+                </div>
+              </CardHeader>
+              <CardContent className="pt-6 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {skillGroups.map((group, gi) => (
+                    <div key={gi} className="space-y-3">
+                      {/* Group Header with icon + colored border */}
+                      <div
+                        className={`flex items-center gap-2 pb-2 border-b ${group.borderColor}`}
+                      >
+                        <div className={`p-1.5 rounded-md ${group.iconBg}`}>
+                          {group.icon}
+                        </div>
+                        <h4
+                          className={`text-xs font-mono uppercase tracking-wider ${group.titleColor}`}
+                        >
+                          {group.title}
+                        </h4>
+                      </div>
+                      {/* Skills with proficiency dots */}
+                      <div className="space-y-1.5">
+                        {group.skills.map((skill) => (
+                          <div
+                            key={skill.name}
+                            className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md bg-zinc-900/60 border border-zinc-800/50 ${group.hoverBorder} ${group.hoverBg} ${group.hoverShadow} transition-all duration-300 cursor-default group/skill`}
+                          >
+                            <span
+                              className={`font-mono text-[10px] text-zinc-400 ${group.hoverText} transition-colors group-hover/skill:text-inherit`}
+                            >
+                              {skill.name}
+                            </span>
+                            <ProficiencyDots
+                              level={skill.level}
+                              colorClass={group.dotColor}
+                              mutedClass={group.dotMuted}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </motion.div>
       </div>
     </section>
@@ -513,14 +899,18 @@ function EducationVaultBento() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
   };
 
   return (
     <section
       id="vault"
       ref={ref}
-      className="relative py-8 px-6 md:px-12 lg:px-24"
+      className="relative py-8 px-6 md:px-12 lg:px-24 scroll-mt-24"
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -545,9 +935,16 @@ function EducationVaultBento() {
                 </h3>
                 <Button
                   variant="outline"
-                  className="w-full max-w-[200px] border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 font-mono text-xs h-10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all flexshrink"
+                  className="w-full max-w-[200px] border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 hover:text-emerald-300 font-mono text-xs h-10 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all"
+                  asChild
                 >
-                  <Download className="w-4 h-4 mr-2" />[ Extract ]
+                  <a
+                    href="https://drive.google.com/file/d/1A65AQ9X_i6hfPrgPftDPrOHnWyoM4yV3/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Download className="w-4 h-4 mr-2" />[ View CV ]
+                  </a>
                 </Button>
               </CardContent>
             </Card>
@@ -709,24 +1106,60 @@ function EducationVaultBento() {
   );
 }
 
-// --- Sticky Navbar ---
+// --- Floating Pill Navbar ---
 function StickyNavbar() {
   return (
-    <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800/50">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-center sm:justify-end gap-6 sm:gap-8">
-        <a href="#hero" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
-          <span className="text-zinc-600 mr-1">//</span>Home
-        </a>
-        <a href="#experience" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
-          <span className="text-zinc-600 mr-1">//</span>Experience
-        </a>
-        <a href="#projects" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
-          <span className="text-zinc-600 mr-1">//</span>Projects
-        </a>
-        <a href="#vault" className="font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-colors hover:glow-emerald">
-          <span className="text-zinc-600 mr-1">//</span>Vault
-        </a>
-      </div>
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-zinc-950/80 backdrop-blur-xl border border-zinc-800 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] flex items-center gap-4 sm:gap-6 lg:gap-8 transition-all">
+      <a
+        href="#hero"
+        className="flex items-center gap-1.5 font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-all hover:glow-emerald group"
+      >
+        <Terminal
+          size={14}
+          className="text-zinc-600 group-hover:text-emerald-400 transition-colors"
+        />
+        <span className="hidden sm:inline">Home</span>
+      </a>
+      <a
+        href="#experience"
+        className="flex items-center gap-1.5 font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-all hover:glow-emerald group"
+      >
+        <Briefcase
+          size={14}
+          className="text-zinc-600 group-hover:text-emerald-400 transition-colors"
+        />
+        <span className="hidden sm:inline">Experience</span>
+      </a>
+      <a
+        href="#arsenal"
+        className="flex items-center gap-1.5 font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-all hover:glow-emerald group"
+      >
+        <Cpu
+          size={14}
+          className="text-zinc-600 group-hover:text-emerald-400 transition-colors"
+        />
+        <span className="hidden sm:inline">Arsenal</span>
+      </a>
+      <a
+        href="#projects"
+        className="flex items-center gap-1.5 font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-all hover:glow-emerald group"
+      >
+        <Code2
+          size={14}
+          className="text-zinc-600 group-hover:text-emerald-400 transition-colors"
+        />
+        <span className="hidden sm:inline">Projects</span>
+      </a>
+      <a
+        href="#vault"
+        className="flex items-center gap-1.5 font-mono text-xs sm:text-sm text-zinc-400 hover:text-emerald-400 transition-all hover:glow-emerald group"
+      >
+        <Shield
+          size={14}
+          className="text-zinc-600 group-hover:text-emerald-400 transition-colors"
+        />
+        <span className="hidden sm:inline">Vault</span>
+      </a>
     </nav>
   );
 }
@@ -743,14 +1176,25 @@ function ProjectsBento() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" as const },
+    },
   };
 
   return (
-    <section id="projects" ref={ref} className="relative py-16 px-6 md:px-12 lg:px-24 mb-24">
+    <section
+      id="projects"
+      ref={ref}
+      className="relative py-16 px-6 md:px-12 lg:px-24 mb-24 scroll-mt-24"
+    >
       <div className="max-w-6xl mx-auto">
-        <motion.div variants={containerVariants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
-          
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           <motion.div variants={itemVariants} className="mb-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm">
               <Terminal className="w-4 h-4 text-emerald-500/60" />
@@ -761,13 +1205,12 @@ function ProjectsBento() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
             {/* Project 1: FractionalTokenManager */}
             <motion.div variants={itemVariants}>
               <Card className="h-full bg-zinc-950/60 border-zinc-800/50 hover:border-emerald-500/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] group relative overflow-hidden flex flex-col">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay group-hover:opacity-10 transition-opacity" />
                 <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-emerald-500/20 via-emerald-400 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                
+
                 <CardContent className="p-6 md:p-8 flex flex-col flex-1 relative z-10">
                   <div className="flex justify-between items-start mb-6 gap-4">
                     <div className="flex items-center gap-3">
@@ -775,24 +1218,51 @@ function ProjectsBento() {
                         <Database className="w-5 h-5 text-emerald-400" />
                       </div>
                       <h3 className="text-xl font-bold text-foreground group-hover:text-emerald-400 transition-colors leading-tight">
-                        Fractional<br className="hidden sm:block lg:hidden"/>TokenManager
+                        Fractional
+                        <br className="hidden sm:block lg:hidden" />
+                        TokenManager
                       </h3>
                     </div>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-emerald-500/10 hover:text-emerald-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50" asChild>
-                      <a href="https://github.com/RakanAji/FractionalTokenManager" target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 hover:bg-emerald-500/10 hover:text-emerald-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50"
+                      asChild
+                    >
+                      <a
+                        href="https://github.com/RakanAji/FractionalTokenManager"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="w-4 h-4" />
                       </a>
                     </Button>
                   </div>
                   <p className="text-zinc-400 text-sm leading-relaxed mb-8 flex-1">
-                    Solidity-based protocol to fractionalize <span className="text-emerald-400/80 font-mono text-xs">ERC721</span> NFTs into fungible <span className="text-emerald-400/80 font-mono text-xs">ERC20</span> tokens for shared ownership. Developed using Foundry with comprehensive unit/fuzzing tests and gas optimization deployment scripts.
+                    Solidity-based protocol to fractionalize{" "}
+                    <span className="text-emerald-400/80 font-mono text-xs">
+                      ERC721
+                    </span>{" "}
+                    NFTs into fungible{" "}
+                    <span className="text-emerald-400/80 font-mono text-xs">
+                      ERC20
+                    </span>{" "}
+                    tokens for shared ownership. Developed using Foundry with
+                    comprehensive unit/fuzzing tests and gas optimization
+                    deployment scripts.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-auto">
-                    {["Web3", "Solidity", "Foundry", "ERC721/ERC20"].map((tag) => (
-                      <Badge key={tag} variant="secondary" className="bg-zinc-900/50 border border-emerald-900/30 text-emerald-400 font-mono text-xs hover:bg-emerald-900/20">
-                        {tag}
-                      </Badge>
-                    ))}
+                    {["Web3", "Solidity", "Foundry", "ERC721/ERC20"].map(
+                      (tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="bg-zinc-900/50 border border-emerald-900/30 text-emerald-400 font-mono text-xs hover:bg-emerald-900/20"
+                        >
+                          {tag}
+                        </Badge>
+                      ),
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -802,7 +1272,7 @@ function ProjectsBento() {
             <motion.div variants={itemVariants}>
               <Card className="h-full bg-zinc-950/40 border-zinc-800/50 hover:border-cyan-500/50 backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(34,211,238,0.1)] group relative overflow-hidden flex flex-col">
                 <div className="absolute -right-12 -top-12 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition-colors" />
-                
+
                 <CardContent className="p-6 md:p-8 flex flex-col flex-1 relative z-10">
                   <div className="flex justify-between items-start mb-6 gap-4">
                     <div className="flex items-center gap-3">
@@ -813,24 +1283,42 @@ function ProjectsBento() {
                         <h3 className="text-xl font-bold text-foreground group-hover:text-cyan-400 transition-colors leading-tight">
                           Gyrocrash
                         </h3>
-                        <p className="text-xs text-zinc-500 font-mono mt-1">Motorcrash Alert & Autoengine Shutdown</p>
+                        <p className="text-xs text-zinc-500 font-mono mt-1">
+                          Motorcrash Alert & Autoengine Shutdown
+                        </p>
                       </div>
                     </div>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-cyan-500/10 hover:text-cyan-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50" asChild>
-                      <a href="https://drive.google.com/file/d/1oKS0p0bM3XNEgT2sWa5xqiqk1z03ioC9/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 hover:bg-cyan-500/10 hover:text-cyan-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50"
+                      asChild
+                    >
+                      <a
+                        href="https://drive.google.com/file/d/1oKS0p0bM3XNEgT2sWa5xqiqk1z03ioC9/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     </Button>
                   </div>
                   <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
-                    An innovative accident detection device using MPU 6050 sensor and NEO-6M GPS, integrated with a Telegram application for real-time alerts. 
+                    An innovative accident detection device using MPU 6050
+                    sensor and NEO-6M GPS, integrated with a Telegram
+                    application for real-time alerts.
                     <span className="block mt-2 text-cyan-400/80 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-                      <Award className="w-3 h-3" /> Secured PKM KC funding award (2024)
+                      <Award className="w-3 h-3" /> Secured PKM KC funding award
+                      (2024)
                     </span>
                   </p>
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {["IoT", "Hardware", "C/Python", "Telemetry"].map((tag) => (
-                      <Badge key={tag} variant="secondary" className="bg-zinc-900 border border-zinc-800 text-zinc-400 font-mono text-xs group-hover:border-cyan-500/20 group-hover:text-cyan-400">
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="bg-zinc-900 border border-zinc-800 text-zinc-400 font-mono text-xs group-hover:border-cyan-500/20 group-hover:text-cyan-400"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -852,18 +1340,33 @@ function ProjectsBento() {
                         Axiom Protocol
                       </h3>
                     </div>
-                     <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-purple-500/10 hover:text-purple-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50" asChild>
-                      <a href="https://github.com/RakanAji/AxiomProtocol" target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 hover:bg-purple-500/10 hover:text-purple-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50"
+                      asChild
+                    >
+                      <a
+                        href="https://github.com/RakanAji/AxiomProtocol"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="w-4 h-4" />
                       </a>
                     </Button>
                   </div>
                   <p className="text-zinc-400 text-sm leading-relaxed mb-8 flex-1">
-                    EVM Smart Contract implementation utilizing the EIP-2535 Diamond Pattern for highly secure and upgradable decentralized applications.
+                    EVM Smart Contract implementation utilizing the EIP-2535
+                    Diamond Pattern for highly secure and upgradable
+                    decentralized applications.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {["Web3", "Solidity", "EVM", "Security"].map((tag) => (
-                      <Badge key={tag} variant="secondary" className="bg-zinc-900 border border-zinc-800 text-zinc-400 font-mono text-xs group-hover:border-purple-500/20 group-hover:text-purple-400">
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="bg-zinc-900 border border-zinc-800 text-zinc-400 font-mono text-xs group-hover:border-purple-500/20 group-hover:text-purple-400"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -885,18 +1388,32 @@ function ProjectsBento() {
                         Accify
                       </h3>
                     </div>
-                     <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-amber-500/10 hover:text-amber-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50" asChild>
-                      <a href="https://github.com/RakanAji/accify-backend-django-mysql-mongodb" target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8 hover:bg-amber-500/10 hover:text-amber-400 rounded-full shrink-0 text-zinc-500 bg-zinc-900/50"
+                      asChild
+                    >
+                      <a
+                        href="https://github.com/RakanAji/accify-backend-django-mysql-mongodb"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="w-4 h-4" />
                       </a>
                     </Button>
                   </div>
                   <p className="text-zinc-400 text-sm leading-relaxed mb-8 flex-1">
-                    Automatic motorcycle accident detection system utilizing IoT (ESP32) and real-time telemetry to trigger emergency alerts.
+                    Automatic motorcycle accident detection system utilizing IoT
+                    (ESP32) and real-time telemetry to trigger emergency alerts.
                   </p>
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {["IoT", "ESP32", "Hardware", "Telemetry"].map((tag) => (
-                      <Badge key={tag} variant="secondary" className="bg-zinc-900 border border-zinc-800 text-zinc-400 font-mono text-xs group-hover:border-amber-500/20 group-hover:text-amber-400">
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="bg-zinc-900 border border-zinc-800 text-zinc-400 font-mono text-xs group-hover:border-amber-500/20 group-hover:text-amber-400"
+                      >
                         {tag}
                       </Badge>
                     ))}
@@ -904,11 +1421,187 @@ function ProjectsBento() {
                 </CardContent>
               </Card>
             </motion.div>
-
           </div>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+// --- Interactive Network Web Background ---
+function NetworkWeb() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: -1000, y: -1000 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = (canvas.width = window.innerWidth);
+    let h = (canvas.height = window.innerHeight);
+
+    const NODE_COUNT = 80;
+    const CONNECTION_DIST = 150;
+    const MOUSE_RADIUS = 200;
+
+    interface Node {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+    }
+
+    const nodes: Node[] = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 1.5 + 0.5,
+      });
+    }
+
+    const handleResize = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current = { x: -1000, y: -1000 };
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+
+    let animId: number;
+
+    const animate = () => {
+      ctx.clearRect(0, 0, w, h);
+      const mouse = mouseRef.current;
+
+      // Update & draw nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+
+        // Drift
+        n.x += n.vx;
+        n.y += n.vy;
+
+        // Bounce off edges
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+
+        // Mouse attraction
+        const dx = mouse.x - n.x;
+        const dy = mouse.y - n.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_RADIUS && dist > 0) {
+          const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.02;
+          n.vx += dx / dist * force;
+          n.vy += dy / dist * force;
+        }
+
+        // Speed limit
+        const speed = Math.sqrt(n.vx * n.vx + n.vy * n.vy);
+        if (speed > 1.2) {
+          n.vx = (n.vx / speed) * 1.2;
+          n.vy = (n.vy / speed) * 1.2;
+        }
+
+        // Draw node
+        const mouseDist = Math.sqrt((mouse.x - n.x) ** 2 + (mouse.y - n.y) ** 2);
+        const isNearMouse = mouseDist < MOUSE_RADIUS;
+        const nodeAlpha = isNearMouse ? 0.8 : 0.3;
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, isNearMouse ? n.radius * 2 : n.radius, 0, Math.PI * 2);
+        ctx.fillStyle = isNearMouse
+          ? `rgba(16, 185, 129, ${nodeAlpha})`
+          : `rgba(161, 161, 170, ${nodeAlpha})`;
+        ctx.fill();
+
+        // Glow for nodes near mouse
+        if (isNearMouse) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.radius * 4, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(16, 185, 129, ${0.08 * (1 - mouseDist / MOUSE_RADIUS)})`;
+          ctx.fill();
+        }
+      }
+
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < CONNECTION_DIST) {
+            const midX = (a.x + b.x) / 2;
+            const midY = (a.y + b.y) / 2;
+            const mouseDistMid = Math.sqrt((mouse.x - midX) ** 2 + (mouse.y - midY) ** 2);
+            const isLineNearMouse = mouseDistMid < MOUSE_RADIUS;
+
+            const alpha = (1 - dist / CONNECTION_DIST) * (isLineNearMouse ? 0.5 : 0.08);
+
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = isLineNearMouse
+              ? `rgba(16, 185, 129, ${alpha})`
+              : `rgba(161, 161, 170, ${alpha})`;
+            ctx.lineWidth = isLineNearMouse ? 1 : 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw mouse connection lines to nearby nodes
+      for (const n of nodes) {
+        const dx = mouse.x - n.x;
+        const dy = mouse.y - n.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MOUSE_RADIUS * 0.8) {
+          const alpha = (1 - dist / (MOUSE_RADIUS * 0.8)) * 0.3;
+          ctx.beginPath();
+          ctx.moveTo(mouse.x, mouse.y);
+          ctx.lineTo(n.x, n.y);
+          ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+
+      animId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full"
+      style={{ pointerEvents: "none" }}
+    />
   );
 }
 
@@ -917,18 +1610,108 @@ export default function Home() {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
-    <main className="relative bg-zinc-950 min-h-screen scanlines selection:bg-emerald-500/30">
-      <StickyNavbar />
-      <HeroSection onOpenChat={() => setIsChatOpen(true)} />
-      
-      <TelemetryMetrics />
-      {/* Reduced padding between sections for cohesive bento feel */}
-      <div className="flex flex-col gap-4">
-        <ExperienceBento />
-        <EducationVaultBento />
-        <ProjectsBento />
+    <main className="relative bg-zinc-950 min-h-screen scanlines selection:bg-emerald-500/30 overflow-hidden">
+      {/* Interactive Network Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <NetworkWeb />
+
+        {/* Animated Glowing Orbs */}
+        <motion.div
+          animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-emerald-500/[0.07] blur-[120px] pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+          className="absolute top-[30%] -right-[10%] w-[40%] h-[40%] rounded-full bg-cyan-500/[0.07] blur-[120px] pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -50, 0], scale: [1, 1.15, 1] }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+          className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-purple-500/[0.04] blur-[150px] pointer-events-none"
+        />
       </div>
-      
+
+      <div className="relative z-10 space-y-4 pb-0">
+        <StickyNavbar />
+        <HeroSection onOpenChat={() => setIsChatOpen(true)} />
+
+        <TelemetryMetrics />
+        {/* Reduced padding between sections for cohesive bento feel */}
+        <div className="flex flex-col gap-4">
+          <ExperienceBento />
+          <TechnicalArsenal />
+          <EducationVaultBento />
+          <ProjectsBento />
+        </div>
+
+        {/* Contact CTA */}
+        <section id="contact" className="relative py-20 px-6 md:px-12 lg:px-24 scroll-mt-24">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm mb-8">
+              <Terminal className="w-4 h-4 text-emerald-500/60" />
+              <span className="font-mono text-sm text-emerald-400 glow-emerald">
+                ./connect.sh
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 tracking-tight">
+              Ready for new challenges.
+            </h2>
+            <p className="text-zinc-400 text-base md:text-lg mb-10 leading-relaxed">
+              Open to opportunities in Information Security, Smart Contract Auditing, and IoT/OT Security. Let&apos;s build something secure together.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Button variant="outline" className="border-emerald-500/30 text-emerald-400 hover:border-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300 font-mono text-sm h-11 px-6 transition-all hover:shadow-[0_0_15px_rgba(16,185,129,0.2)]" asChild>
+                <a href="mailto:pratamarakanaji@gmail.com">
+                  <Mail className="w-4 h-4 mr-2" /> Send Transmission
+                </a>
+              </Button>
+              <Button variant="ghost" className="text-zinc-400 hover:text-emerald-400 hover:bg-zinc-800/50 font-mono text-sm h-11 px-6 transition-all" asChild>
+                <a href="https://linkedin.com/in/rakanaji" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-4 h-4 mr-2" /> LinkedIn
+                </a>
+              </Button>
+              <Button variant="ghost" className="text-zinc-400 hover:text-emerald-400 hover:bg-zinc-800/50 font-mono text-sm h-11 px-6 transition-all" asChild>
+                <a href="https://github.com/RakanAji" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-4 h-4 mr-2" /> GitHub
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Terminal Footer */}
+        <footer className="border-t border-zinc-800/50 py-8 px-6 md:px-12 lg:px-24">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="font-mono text-xs text-zinc-600">
+              <span className="text-zinc-500">root@rakan:~$</span> echo &quot;&copy; 2025 Rakan Aji Pratama. All rights reserved.&quot;
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="https://github.com/RakanAji" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-emerald-400 transition-colors">
+                <Github className="w-4 h-4" />
+              </a>
+              <a href="https://linkedin.com/in/rakanaji" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-emerald-400 transition-colors">
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a href="mailto:pratamarakanaji@gmail.com" className="text-zinc-600 hover:text-emerald-400 transition-colors">
+                <Mail className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+
       <ChatTerminal isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </main>
   );
